@@ -1,12 +1,8 @@
 import logging
-
+from pathlib import Path
 from aiogram import Bot, Dispatcher, executor, types
 
-TG_BOT_TOKEN = '5229233813:AAExstpPb3zsqgqWo1eL7Z48fyZDsUvkRlM'
-TG_WEBHOOK_PATH = ''
-TG_WEBHOOK_URL = 'https://necrobot-342313.lm.r.appspot.com/tgbot'
-WEBAPP_HOST = '0.0.0.0'
-WEBAPP_PORT = 4999
+TG_BOT_TOKEN = Path('telegram-bot.token').read_text()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -27,11 +23,6 @@ async def send_welcome(message: types.Message):
 async def echo(message: types.Message):
     # smth
     await message.answer(message.text)
-
-
-async def on_startup(dp):
-    await bot.set_webhook(TG_WEBHOOK_URL)
-    # insert code here to run it after start
 
 
 async def on_shutdown(dp):
